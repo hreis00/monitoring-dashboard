@@ -1,0 +1,57 @@
+# Git
+.git
+.gitignore
+
+# Environment variables
+.env
+*.env
+.env.example
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.docker
+.dockerignore
+
+# Documentation
+README.md
+*.md
+docs/
+
+# Development and IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+log/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Test files
+test/
+tests/
+*_test.go
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+*.cer
+*.der
+*.priv
+
+# Backup files
+*_backup
+*_backup/

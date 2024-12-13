@@ -1,0 +1,42 @@
+# Environment variables
+.env
+*.env
+
+# Backup files
+*_backup
+*_backup/
+
+# Docker volumes and data
+data/
+volumes/
+prometheus_data/
+grafana_data/
+
+# Logs
+*.log
+logs/
+log/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+*.cer
+*.der
+*.priv
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
