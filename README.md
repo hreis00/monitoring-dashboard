@@ -23,7 +23,7 @@ A comprehensive monitoring solution using Heimdall as a dashboard interface, int
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:hreis00/monitoring-dashboard.git
 cd heimdall
 ```
 
@@ -57,10 +57,11 @@ docker-compose up -d
 After starting the containers, access the services at:
 
 - **Heimdall**: http://localhost:80
-- **Grafana**: http://localhost:3000
+- **Grafana**: http://localhost:3002
 - **Prometheus**: http://localhost:9090
 - **Node-Exporter**: http://localhost:9100/metrics
 - **Glances**: http://localhost:61208
+- **TS-App**: http://localhost:3001
 
 ## ⚙️ Configuration
 
