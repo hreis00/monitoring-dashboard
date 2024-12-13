@@ -84,14 +84,11 @@ Add your applications as tiles in the Heimdall dashboard for easy access.
 ```plaintext
 |
 ├── config/                 # Heimdall configuration directory
-│   ├── keys/               # SSL/TLS certificates and keys
-│   ├── log/                # Application logs
-│   ├── nginx/              # Nginx configuration
-│   ├── php/                # PHP configuration
-│   └── www/                # Web root directory
 │
 ├── prometheus/             # Prometheus configuration directory
 │   └── prometheus.yml      # Prometheus scrape configuration
+│
+├── ts-app/                 # ts-app directory
 │
 ├── docker-compose.yml      # Docker services orchestration
 ├── .env                    # Environment variables (ignored by git)
