@@ -31,8 +31,8 @@ export function BackendStatus() {
     }
 
     fetchStatus()
-    // Set up polling every 30 seconds
-    const interval = setInterval(fetchStatus, 30000)
+    // Set up polling every 10 seconds
+    const interval = setInterval(fetchStatus, 10000)
     return () => clearInterval(interval)
   }, [])
 
