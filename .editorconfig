@@ -1,12 +1,31 @@
 root = true
 
+# All files
 [*]
 charset = utf-8
 end_of_line = lf
+indent_size = 4
 indent_style = space
-indent_size = 2
 insert_final_newline = true
-trim_trailing_whitespace = true
+tab_width = 4
 
-[*.md]
-trim_trailing_whitespace = false
+# Maker files
+[Makefile]
+indent_style = tab
+
+# Yaml,Yml files
+[*.{yaml,yml}]
+charset = utf-8
+indent_size = 2
+tab_width = 2
+
+# Js,Json files
+[*.{js,json}]
+charset = utf-8
+indent_size = 2
+tab_width = 2
+
+# Script files
+[*.{sh,bat}]
+end_of_line = lf
+insert_final_newline = true

@@ -1,13 +1,26 @@
-FROM node:18-alpine
+# Build stage
+FROM node:20-alpine3.20 as builder
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
-RUN npm install
+RUN npm ci
 
 COPY . .
 
+RUN npm run build
+
+# Production stage
+FROM nginx:stable-alpine
+
+# Copy nginx configurations
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+
+# Copy built files
+COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
+
 EXPOSE 3001
 
-CMD ["npm", "run", "dev", "--", "--host"]
+CMD ["nginx", "-g", "daemon off;"]

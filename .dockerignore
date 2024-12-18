@@ -54,4 +54,19 @@ tests/
 
 # Backup files
 *_backup
-*_backup/
+*_backup/w
+
+# Node modules
+node_modules/
+
+# VSCode
+.vscode
+
+# Ignore build folder
+dist
+build
+
+# Ignore ESLint, Prettier, and other configuration files that aren't needed in the final image
+.eslint*
+.prettier*
+.editorconfig
