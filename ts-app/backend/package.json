@@ -1,25 +1,27 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec node --loader ts-node/esm src/index.ts"
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev ./src/index.ts | pino-pretty --colorize"
   },
   "keywords": [],
-  "author": "",
+  "author": "Hugo Reis",
   "license": "ISC",
   "description": "",
+  "dependencies": {
+    "@fastify/cors": "^8.5.0",
+    "fastify": "^4.25.2",
+    "pino-pretty": "^10.3.1"
+  },
   "devDependencies": {
     "@types/node": "^22.10.2",
     "nodemon": "^3.1.7",
-    "pino-pretty": "^10.3.1",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "@fastify/cors": "^8.5.0",
-    "fastify": "^4.25.2"
   }
 }

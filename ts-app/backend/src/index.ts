@@ -20,7 +20,7 @@ const start = async () => {
         "http://localhost:80",
         "http://127.0.0.1:3001",
         "http://127.0.0.1",
-        "http://127.0.0.1:80"
+        "http://127.0.0.1:80",
       ],
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       credentials: true,
