@@ -4,7 +4,7 @@ FROM node:20-alpine3.20 as builder
 WORKDIR /usr/src/app
 
 # Copy package files
-COPY package.json ./
+COPY package*.json ./
 
 # Install all dependencies and update package-lock.json
 RUN npm install
@@ -21,7 +21,7 @@ ENV NODE_ENV=production
 WORKDIR /usr/src/app
 
 # Copy package files and install production dependencies
-COPY package.json ./
+COPY package*.json ./
 RUN npm install --omit=dev
 
 # Copy built files from builder
@@ -29,5 +29,4 @@ COPY --from=builder /usr/src/app/dist ./dist
 
 EXPOSE 3000
 
-ENTRYPOINT ["node"]
-CMD ["dist/index.js"]
+CMD ["node", "dist/index.js"]

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-900">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Health Status</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full">
+    <div class="min-h-full">
+        <main class="flex min-h-full items-center justify-center p-6">
+            <div class="w-full max-w-3xl">
+                <div class="bg-gray-800 shadow-xl rounded-lg overflow-hidden">
+                    <!-- Header -->
+                    <div class="px-6 py-4 border-b border-gray-700">
+                        <div class="flex items-center justify-between">
+                            <h1 class="text-xl font-semibold text-white">System Health Status</h1>
+                            <div class="flex items-center space-x-2">
+                                <div class="h-3 w-3 bg-green-500 rounded-full animate-pulse-slow" id="statusDot"></div>
+                                <span class="text-sm font-medium text-green-500" id="statusText">System Healthy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Status Grid -->
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Frontend Status -->
+                        <div class="bg-gray-700/50 rounded-lg p-4">
+                            <div class="text-sm font-medium text-gray-400 mb-1">Frontend Status</div>
+                            <div class="text-lg font-semibold text-white">Online</div>
+                        </div>
+
+                        <!-- Backend Status -->
+                        <div class="bg-gray-700/50 rounded-lg p-4">
+                            <div class="text-sm font-medium text-gray-400 mb-1">Backend Status</div>
+                            <div class="text-lg font-semibold text-white" id="backendStatus">Checking...</div>
+                        </div>
+
+                        <!-- Server Info -->
+                        <div class="bg-gray-700/50 rounded-lg p-4">
+                            <div class="text-sm font-medium text-gray-400 mb-1">Server</div>
+                            <div class="text-lg font-semibold text-white">NGINX</div>
+                        </div>
+
+                        <!-- Environment -->
+                        <div class="bg-gray-700/50 rounded-lg p-4">
+                            <div class="text-sm font-medium text-gray-400 mb-1">Environment</div>
+                            <div class="text-lg font-semibold text-white">Production</div>
+                        </div>
+                    </div>
+
+                    <!-- Timestamp -->
+                    <div class="px-6 py-4 border-t border-gray-700">
+                        <div class="text-sm text-gray-400" id="timestamp"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function updateTimestamp() {
+            const timestamp = new Date().toISOString();
+            document.getElementById('timestamp').textContent = `Last updated: ${timestamp}`;
+        }
+
+        async function checkBackendHealth() {
+            try {
+                const response = await fetch('/api/status');
+                if (response.ok) {
+                    document.getElementById('backendStatus').textContent = 'Healthy';
+                    document.getElementById('backendStatus').classList.remove('text-red-500');
+                    document.getElementById('backendStatus').classList.add('text-white');
+                } else {
+                    throw new Error('Backend unhealthy');
+                }
+            } catch (error) {
+                document.getElementById('backendStatus').textContent = 'Unhealthy';
+                document.getElementById('backendStatus').classList.remove('text-white');
+                document.getElementById('backendStatus').classList.add('text-red-500');
+                document.getElementById('statusDot').classList.remove('bg-green-500');
+                document.getElementById('statusDot').classList.add('bg-red-500');
+                document.getElementById('statusText').textContent = 'System Degraded';
+                document.getElementById('statusText').classList.remove('text-green-500');
+                document.getElementById('statusText').classList.add('text-red-500');
+            }
+            updateTimestamp();
+        }
+
+        // Update status every 10 seconds
+        checkBackendHealth();
+        setInterval(checkBackendHealth, 10000);
+    </script>
+</body>
+</html>
